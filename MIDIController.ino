@@ -7,15 +7,15 @@
 #define N_FRETS 5
 #define FRET_PINS 7, 8, 9, 10, 11
 
-uint8_t frets[] = {
+const uint8_t frets[] = {
 	FRET_PINS
 };
 
-uint8_t strings[] = {
+const uint8_t strings[] = {
 	STRING_PINS
 };
 
-uint8_t stringNotes[] = {
+const uint8_t stringNotes[] = {
 	STRING_NOTES
 };
 
@@ -26,12 +26,12 @@ struct stringState{
 
 struct stringState stringStates[N_STRINGS];
 
-void startNote(uint8_t note){
+void startNote(const uint8_t note){
 	midiEventPacket_t noteOn = {0x09, 0x90 | 0, note, 127};
 	MidiUSB.sendMIDI(noteOn);
 }
 
-void stopNote(uint8_t note){
+void stopNote(const uint8_t note){
 	midiEventPacket_t noteOff = {0x08, 0x80 | 0, note, 0};
 	MidiUSB.sendMIDI(noteOff);
 }
